@@ -1,0 +1,62 @@
+{
+  "source_system": "ORBIS ERP",
+  "object": "Customer Purchase Order",
+  "data": {
+    "po_number": "4500198872",
+    "customer_id": "C-200114",
+    "customer_name": "Nordwind Turbines GmbH",
+    "contract_number": "MSA-NW-APX-2024-017",
+    "po_date": "2026-05-12",
+    "valid_from": "2026-05-12",
+    "valid_to": "2027-05-31",
+    "status": "OPEN",
+    "currency": "EUR",
+    "po_amount_limit": 35000.0,
+    "released_amount": 31830.0,
+    "buyer_name": "Katrin Bauer",
+    "buyer_email": "k.bauer@nordwind-turbines.de",
+    "payment_terms": "Net 45 days from invoice date; 2% discount if paid within 10 days",
+    "incoterms": "DAP Hamburg Plant 2 (Incoterms 2020)",
+    "sales_order": "SO-2026-07741",
+    "lines": [
+      {
+        "po_line": 1,
+        "item_number": "AX-PMP-320",
+        "description": "Centrifugal Pump Assembly, 320mm impeller, SS316",
+        "uom": "EA",
+        "quantity": 12,
+        "unit_price": 1850.0,
+        "amount": 22200.0
+      },
+      {
+        "po_line": 2,
+        "item_number": "AX-SEAL-88",
+        "description": "Mechanical Seal Kit, tungsten carbide faces",
+        "uom": "EA",
+        "quantity": 24,
+        "unit_price": 145.0,
+        "amount": 3480.0
+      },
+      {
+        "po_line": 3,
+        "item_number": "AX-BRG-540",
+        "description": "High-load Bearing Set, sealed, Class 5",
+        "uom": "SET",
+        "quantity": 12,
+        "unit_price": 410.0,
+        "amount": 4920.0
+      },
+      {
+        "po_line": 4,
+        "item_number": "AX-GSKT-12",
+        "description": "Gasket & Fastener Pack (per pump)",
+        "uom": "PK",
+        "quantity": 12,
+        "unit_price": 62.5,
+        "amount": 750.0
+      }
+    ],
+    "document_id": "DOC-PO-4500198872",
+    "documents": []
+  }
+}

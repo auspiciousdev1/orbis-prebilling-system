@@ -1,9 +1,19 @@
 {
   "source_system": "ORBIS ERP",
   "object": "Delivery",
-  "count": 22,
+  "count": 23,
   "generated_at": "2026-08-27T08:15:23Z",
   "data": [
+    {
+      "delivery_number": "DN-88231",
+      "sales_order": "SO-2026-07741",
+      "customer_id": "C-200114",
+      "ship_date": "2026-06-18",
+      "carrier": "DHL Freight",
+      "waybill": "DHL-DEMO-88231",
+      "proof_of_delivery_date": "2026-06-18",
+      "incoterms": "DAP Hamburg Plant 2 (Incoterms 2020)"
+    },
     {
       "delivery_number": "WBO-760400",
       "sales_order": "1886400",

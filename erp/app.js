@@ -5,6 +5,14 @@ const API = '../api'
 const view = document.getElementById('view')
 const cache = new Map()
 
+/* Billing Validation demo — show this PO first in every list/table. */
+const DEMO_PO = '4500198872'
+const sortDemoFirst = (rows, ...keys) =>
+  [...rows].sort((a, b) => {
+    const hit = (r) => keys.some((k) => String(r[k] ?? '').includes(DEMO_PO))
+    return Number(hit(b)) - Number(hit(a))
+  })
+
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]))
 const num = (n, dp = 2) =>
   n === null || n === undefined || n === '' ? '' : Number(n).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp })
@@ -137,7 +145,7 @@ async function dashboard() {
        what the billing desk intends to invoice, before anyone checks it.</p>
        <p class="note">Every screen is backed by a JSON endpoint under <span class="mono">api/</span> and every
        contract, PO, order and delivery has a source PDF under <span class="mono">docs/</span>.</p>`)}
-    ${cardTable('Billing drafts pending validation', table(DRAFT_COLS, drafts.data.slice(0, 10)))}`)
+    ${cardTable('Billing drafts pending validation', table(DRAFT_COLS, sortDemoFirst(drafts.data, 'customer_po_number', 'draft_number').slice(0, 10)))}`)
 }
 
 const DRAFT_COLS = [
@@ -197,7 +205,7 @@ function csvDownload(rows, filename) {
 
 async function draftLines() {
   const payload = await get('billing-draft-lines.json')
-  const rows = payload.data
+  const rows = sortDemoFirst(payload.data, 'customer_po_number', 'draft_number')
   const allKeys = Object.keys(rows[0] ?? {})
   const refKeys = allKeys.filter((k) => k.startsWith('ref_'))
   // line-level fields first: this table is read line by line, not header by header
@@ -260,7 +268,7 @@ async function draftLines() {
 async function draftList() {
   const d = await get('billing-drafts.json')
   page(`${home} › Billing drafts`, 'Billing drafts', 'Pre-invoice drafts awaiting validation against contract, PO, order and delivery.',
-    searchable(d.data, DRAFT_COLS, 'Search draft, order, PO or customer', 'Billing drafts'))
+    searchable(sortDemoFirst(d.data, 'customer_po_number', 'draft_number'), DRAFT_COLS, 'Search draft, order, PO or customer', 'Billing drafts'))
 }
 
 async function draftDetail(id) {
@@ -337,7 +345,7 @@ const ORDER_COLS = [
 async function orderList() {
   const d = await get('sales-orders.json')
   page(`${home} › Sales orders`, 'Sales orders', 'Order headers, lines, shipment status and billing eligibility.',
-    searchable(d.data, ORDER_COLS, 'Search order, PO, customer or state', 'Sales orders'))
+    searchable(sortDemoFirst(d.data, 'customer_po_number', 'order_number'), ORDER_COLS, 'Search order, PO, customer or state', 'Sales orders'))
 }
 
 async function orderDetail(id) {
@@ -477,7 +485,7 @@ async function poList() {
     { label: 'Buyer', key: 'buyer_name' },
   ]
   page(`${home} › Purchase orders`, 'Customer purchase orders', 'Customer authority to be billed: validity window and approved value.',
-    searchable(d.data, cols, 'Search PO, customer or order', 'Customer purchase orders'))
+    searchable(sortDemoFirst(d.data, 'po_number'), cols, 'Search PO, customer or order', 'Customer purchase orders'))
 }
 
 async function poDetail(id) {
@@ -521,7 +529,7 @@ async function deliveryList() {
     { label: 'Incoterms', key: 'incoterms' },
   ]
   page(`${home} › Deliveries`, 'Deliveries', 'What actually shipped — the quantity basis for delivery-based billing.',
-    searchable(d.data, cols, 'Search delivery, order or waybill', 'Deliveries'))
+    searchable(sortDemoFirst(d.data, 'sales_order', 'delivery_number'), cols, 'Search delivery, order or waybill', 'Deliveries'))
 }
 
 async function deliveryDetail(id) {

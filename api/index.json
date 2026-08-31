@@ -1,7 +1,7 @@
 {
-  "system": "ORBIS — Order & Revenue Billing Information System",
+  "system": "ORBIS \u2014 Order & Revenue Billing Information System",
   "purpose": "Pre-billing source of truth for an invoice field validation POC.",
-  "generated_at": "2026-08-27T08:15:23Z",
+  "generated_at": "2026-08-31T04:40:30Z",
   "endpoints": {
     "operating_units": "api/operating-units.json",
     "customers": "api/customers.json",
@@ -46,11 +46,11 @@
   "counts": {
     "customers": 10,
     "contracts": 10,
-    "purchase_orders": 24,
-    "sales_orders": 24,
+    "purchase_orders": 25,
+    "sales_orders": 25,
     "order_lines": 90,
-    "deliveries": 22,
-    "billing_drafts": 20,
+    "deliveries": 23,
+    "billing_drafts": 21,
     "documents": 80,
     "validated_fields": 24,
     "seeded_findings": 14

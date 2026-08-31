@@ -1,9 +1,23 @@
 {
   "source_system": "ORBIS ERP",
   "object": "Customer Purchase Order",
-  "count": 24,
+  "count": 25,
   "generated_at": "2026-08-27T08:15:23Z",
   "data": [
+    {
+      "po_number": "4500198872",
+      "customer_id": "C-200114",
+      "customer_name": "Nordwind Turbines GmbH",
+      "contract_number": "MSA-NW-APX-2024-017",
+      "po_date": "2026-05-12",
+      "valid_to": "2027-05-31",
+      "status": "OPEN",
+      "currency": "EUR",
+      "po_amount_limit": 35000.0,
+      "released_amount": 31830.0,
+      "sales_order": "SO-2026-07741",
+      "buyer_name": "Katrin Bauer"
+    },
     {
       "po_number": "PO249600",
       "customer_id": "C-100428",
@@ -114,7 +128,7 @@
       "po_amount_limit": 21565.15,
       "released_amount": 13478.22,
       "sales_order": "SO-2026-7791",
-      "buyer_name": "Émilie Rousseau"
+      "buyer_name": "\u00c9milie Rousseau"
     },
     {
       "po_number": "4500198848",
@@ -254,7 +268,7 @@
       "po_amount_limit": 81570.72,
       "released_amount": 50981.7,
       "sales_order": "SO-2026-7921",
-      "buyer_name": "Émilie Rousseau"
+      "buyer_name": "\u00c9milie Rousseau"
     },
     {
       "po_number": "4500198858",

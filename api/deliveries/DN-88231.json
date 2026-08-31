@@ -1,0 +1,49 @@
+{
+  "source_system": "ORBIS ERP",
+  "object": "Delivery",
+  "data": {
+    "delivery_number": "DN-88231",
+    "sales_order": "SO-2026-07741",
+    "customer_id": "C-200114",
+    "ship_date": "2026-06-18",
+    "carrier": "DHL Freight",
+    "waybill": "DHL-DEMO-88231",
+    "proof_of_delivery_date": "2026-06-18",
+    "incoterms": "DAP Hamburg Plant 2 (Incoterms 2020)",
+    "lines": [
+      {
+        "line": 1,
+        "item_number": "AX-PMP-320",
+        "uom": "EA",
+        "shipped_quantity": 12,
+        "ordered_quantity": 12,
+        "backordered_quantity": 0
+      },
+      {
+        "line": 2,
+        "item_number": "AX-SEAL-88",
+        "uom": "EA",
+        "shipped_quantity": 24,
+        "ordered_quantity": 24,
+        "backordered_quantity": 0
+      },
+      {
+        "line": 3,
+        "item_number": "AX-BRG-540",
+        "uom": "SET",
+        "shipped_quantity": 12,
+        "ordered_quantity": 12,
+        "backordered_quantity": 0
+      },
+      {
+        "line": 4,
+        "item_number": "AX-GSKT-12",
+        "uom": "PK",
+        "shipped_quantity": 12,
+        "ordered_quantity": 12,
+        "backordered_quantity": 0
+      }
+    ],
+    "documents": []
+  }
+}

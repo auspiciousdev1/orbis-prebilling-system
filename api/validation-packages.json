@@ -2,9 +2,18 @@
   "source_system": "ORBIS ERP",
   "object": "Validation Package",
   "note": "One call per draft returns the draft plus every upstream object needed to validate it: sales order, purchase order, contract with price list, delivery, customer, tax rules, item master and the URLs of all source documents.",
-  "count": 20,
+  "count": 21,
   "generated_at": "2026-08-27T08:15:23Z",
   "data": [
+    {
+      "draft_number": "BD-2026-5599",
+      "url": "api/validation-packages/BD-2026-5599.json",
+      "sales_order": "SO-2026-07741",
+      "customer_id": "C-200114",
+      "total_payable": 31830.0,
+      "currency": "EUR",
+      "document_count": 0
+    },
     {
       "draft_number": "BD-2026-5500",
       "url": "api/validation-packages/BD-2026-5500.json",

@@ -1,9 +1,30 @@
 {
   "source_system": "ORBIS ERP",
   "object": "Sales Order",
-  "count": 24,
+  "count": 25,
   "generated_at": "2026-08-27T08:15:23Z",
   "data": [
+    {
+      "order_number": "SO-2026-07741",
+      "customer_po_number": "4500198872",
+      "contract_number": "MSA-NW-APX-2024-017",
+      "customer_id": "C-200114",
+      "status": "AWAITING_BILLING",
+      "entered_date": "2026-05-13",
+      "invoiced_date": null,
+      "delivery_number": "DN-88231",
+      "payment_terms": "Net 45 days from invoice date; 2% discount if paid within 10 days",
+      "currency": "EUR",
+      "order_total": 31830.0,
+      "operating_unit": "GEAM_OU_EUR_IND_EU_TRB_WBO",
+      "customer_name_bill_to": "Nordwind Turbines GmbH",
+      "customer_name_ship_to": "Nordwind Turbines GmbH",
+      "state_bill_to": "HH",
+      "state_ship_to": "HH",
+      "on_hold": false,
+      "line_count": 4,
+      "transaction_originator": "Order Management, Apex Precision"
+    },
     {
       "order_number": "1886400",
       "customer_po_number": "PO249600",
@@ -241,8 +262,8 @@
       "caller_email": "a.lindgren@vantaenergy.se",
       "state_bill_to": "SK",
       "state_ship_to": "SK",
-      "city_bill_to": "Malmö",
-      "city_ship_to": "Malmö",
+      "city_bill_to": "Malm\u00f6",
+      "city_ship_to": "Malm\u00f6",
       "line_count": 4,
       "order_total": 33225.6,
       "on_hold": false
@@ -511,8 +532,8 @@
       "caller_email": "a.lindgren@vantaenergy.se",
       "state_bill_to": "SK",
       "state_ship_to": "SK",
-      "city_bill_to": "Malmö",
-      "city_ship_to": "Malmö",
+      "city_bill_to": "Malm\u00f6",
+      "city_ship_to": "Malm\u00f6",
       "line_count": 2,
       "order_total": 10159.2,
       "on_hold": false
