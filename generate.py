@@ -1459,12 +1459,23 @@ def draft_line_rows(b: dict) -> list[dict]:
 
 
 flat_lines = [r for b in billing_drafts for r in draft_line_rows(b)]
+_flat_note = (
+    "One row per draft line with every header field denormalised onto it. Columns prefixed ref_ "
+    "are joined from the source objects (contract, purchase order, sales order, delivery, tax "
+    "rules) for convenience - they are the values the draft should agree with, not part of the "
+    "draft itself."
+)
 dump(f"{API}/billing-draft-lines.json", envelope(
-    "Billing Draft Line (flat)", flat_lines,
-    note="One row per draft line with every header field denormalised onto it. Columns prefixed ref_ "
-         "are joined from the source objects (contract, purchase order, sales order, delivery, tax "
-         "rules) for convenience - they are the values the draft should agree with, not part of the "
-         "draft itself."))
+    "Billing Draft Line (flat)", flat_lines, note=_flat_note))
+lines_by_po: dict[str, list] = {}
+for row in flat_lines:
+    po_no = row.get("customer_po_number") or ""
+    if po_no:
+        lines_by_po.setdefault(po_no, []).append(row)
+os.makedirs(f"{API}/billing-draft-lines", exist_ok=True)
+for po_no, rows in lines_by_po.items():
+    dump(f"{API}/billing-draft-lines/{po_no}.json", envelope(
+        "Billing Draft Line (flat)", rows, note=_flat_note))
 for b in billing_drafts:
     order = SO_BY_NO[b["sales_order"]]
     dump(f"{API}/billing-drafts/{b['draft_number']}.json", {
@@ -1513,6 +1524,7 @@ dump(f"{API}/index.json", {
         "billing_drafts": "api/billing-drafts.json",
         "billing_draft_detail": "api/billing-drafts/{draft_number}.json",
         "billing_draft_lines_flat": "api/billing-draft-lines.json",
+        "billing_draft_lines_by_po": "api/billing-draft-lines/{po_number}.json",
         "documents": "api/documents.json",
         "field_map": "api/field-map.json",
         "expected_findings": "api/mismatches.json",
@@ -1865,6 +1877,8 @@ for p, s, d in [
     ("/api/billing-drafts/{draft_number}.json", "Billing draft", "Draft header, lines and totals."),
     ("/api/billing-draft-lines.json", "Billing draft lines (flat)",
      "One row per draft line, header denormalised, plus ref_ columns joined from the source objects."),
+    ("/api/billing-draft-lines/{po_number}.json", "Billing draft lines by PO",
+     "Flat draft lines for one customer PO number."),
     ("/api/sales-orders.json", "Sales orders", "Order headers with billing status."),
     ("/api/sales-orders/{order_number}.json", "Sales order", "Header, lines, holds, documents."),
     ("/api/purchase-orders.json", "Customer purchase orders", "Validity window and authorised value."),

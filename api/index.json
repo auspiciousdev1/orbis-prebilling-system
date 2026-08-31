@@ -20,6 +20,7 @@
     "billing_drafts": "api/billing-drafts.json",
     "billing_draft_detail": "api/billing-drafts/{draft_number}.json",
     "billing_draft_lines_flat": "api/billing-draft-lines.json",
+    "billing_draft_lines_by_po": "api/billing-draft-lines/{po_number}.json",
     "documents": "api/documents.json",
     "field_map": "api/field-map.json",
     "expected_findings": "api/mismatches.json",
