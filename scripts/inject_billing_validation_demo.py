@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 API = ROOT / "api"
+DOCS = ROOT / "docs"
 
 PO = "4500198872"
 SO = "SO-2026-07741"
@@ -74,6 +75,16 @@ LINES = [
         "unit_price": 62.5,
         "line_amount": 750.0,
     },
+]
+
+#: PDFs filed in docs/ for this scenario: (type, id, title, file, related object, key, date).
+DOCUMENTS = [
+    ("SALES_ORDER", f"DOC-SO-{SO}", "Sales Order Acknowledgement", f"so_{SO}.pdf",
+     "sales_order", SO, "2026-05-13"),
+    ("PURCHASE_ORDER", f"DOC-PO-{PO}", "Customer Purchase Order", f"po_{PO}.pdf",
+     "purchase_order", PO, "2026-05-12"),
+    ("CONTRACT", f"DOC-CT-{CONTRACT}", "Master Commercial Agreement", f"contract_{CONTRACT}.pdf",
+     "contract", CONTRACT, "2024-06-01"),
 ]
 
 GOODS_SUBTOTAL = 31350.0
@@ -209,8 +220,60 @@ def prepend_row(rows: list[dict], row: dict, key: str) -> None:
     rows[:] = [row] + [r for r in rows if r.get(key) != row.get(key)]
 
 
+def document_index_rows() -> list[dict]:
+    """``documents.json`` rows for the scenario's PDFs that exist in docs/."""
+    rows = []
+    for doc_type, doc_id, title, file_name, related_object, related_key, doc_date in DOCUMENTS:
+        path = DOCS / file_name
+        if not path.exists():
+            continue
+        rows.append(
+            {
+                "document_id": doc_id,
+                "document_type": doc_type,
+                "title": title,
+                "reference": related_key,
+                "file_name": file_name,
+                "url": f"docs/{file_name}",
+                "mime_type": "application/pdf",
+                "size_bytes": path.stat().st_size,
+                "related_object": related_object,
+                "related_key": related_key,
+                "document_date": doc_date,
+                "uploaded_by": "ORBIS Document Service",
+            }
+        )
+    return rows
+
+
+def document_links(rows: list[dict], related_object: str | None = None) -> list[dict]:
+    """The short form record pages list under Attached documents."""
+    return [
+        {
+            "document_id": r["document_id"],
+            "document_type": r["document_type"],
+            "title": r["title"],
+            "url": r["url"],
+            "size_bytes": r["size_bytes"],
+        }
+        for r in rows
+        if related_object is None or r["related_object"] == related_object
+    ]
+
+
 def main() -> None:
     flat = flat_rows()
+    doc_rows = document_index_rows()
+
+    documents_path = API / "documents.json"
+    documents = load_json(documents_path)
+    scenario_ids = {d[1] for d in DOCUMENTS}
+    documents["data"] = doc_rows + [
+        r for r in documents["data"] if r.get("document_id") not in scenario_ids
+    ]
+    documents["count"] = len(documents["data"])
+    documents["generated_at"] = GENERATED
+    save_json(documents_path, documents)
     flat_note = (
         "One row per draft line with every header field denormalised onto it. "
         "Columns prefixed ref_ are joined from the source objects."
@@ -304,7 +367,7 @@ def main() -> None:
             "total_payable": TOTAL_PAYABLE,
             "currency": "EUR",
         },
-        "documents": [],
+        "documents": document_links(doc_rows),
     }
     save_json(
         API / "billing-drafts" / f"{DRAFT}.json",
@@ -360,7 +423,7 @@ def main() -> None:
             for l in LINES
         ],
         "document_id": f"DOC-PO-{PO}",
-        "documents": [],
+        "documents": document_links(doc_rows, "purchase_order"),
     }
     save_json(
         API / "purchase-orders" / f"{PO}.json",
@@ -451,7 +514,7 @@ def main() -> None:
         "freight_amount": FREIGHT_TOTAL,
         "tax_amount": 0.0,
         "order_total": TOTAL_PAYABLE,
-        "documents": [],
+        "documents": document_links(doc_rows, "sales_order"),
     }
     save_json(
         API / "sales-orders" / f"{SO}.json",
@@ -535,7 +598,7 @@ def main() -> None:
                 for l in LINES
             ],
             "orders": [SO],
-            "documents": [],
+            "documents": document_links(doc_rows, "contract"),
         }
     )
     save_json(
@@ -550,7 +613,7 @@ def main() -> None:
         "customer_id": CUSTOMER_ID,
         "total_payable": TOTAL_PAYABLE,
         "currency": "EUR",
-        "document_count": 0,
+        "document_count": len(doc_rows),
     }
     pkgs = load_json(API / "validation-packages.json")
     prepend_row(pkgs["data"], pkg_index_row, "draft_number")

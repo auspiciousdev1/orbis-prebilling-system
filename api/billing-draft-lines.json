@@ -2,7 +2,7 @@
   "source_system": "ORBIS ERP",
   "object": "Billing Draft Line (flat)",
   "count": 80,
-  "generated_at": "2026-08-31T04:40:30Z",
+  "generated_at": "2026-11-02T09:04:13Z",
   "note": "One row per draft line with every header field denormalised onto it. Columns prefixed ref_ are joined from the source objects (contract, purchase order, sales order, delivery, tax rules) for convenience - they are the values the draft should agree with, not part of the draft itself.",
   "data": [
     {

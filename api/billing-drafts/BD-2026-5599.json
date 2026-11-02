@@ -149,6 +149,28 @@
       "total_payable": 31830.0,
       "currency": "EUR"
     },
-    "documents": []
+    "documents": [
+      {
+        "document_id": "DOC-SO-SO-2026-07741",
+        "document_type": "SALES_ORDER",
+        "title": "Sales Order Acknowledgement",
+        "url": "docs/so_SO-2026-07741.pdf",
+        "size_bytes": 28740
+      },
+      {
+        "document_id": "DOC-PO-4500198872",
+        "document_type": "PURCHASE_ORDER",
+        "title": "Customer Purchase Order",
+        "url": "docs/po_4500198872.pdf",
+        "size_bytes": 28217
+      },
+      {
+        "document_id": "DOC-CT-MSA-NW-APX-2024-017",
+        "document_type": "CONTRACT",
+        "title": "Master Commercial Agreement",
+        "url": "docs/contract_MSA-NW-APX-2024-017.pdf",
+        "size_bytes": 27960
+      }
+    ]
   }
 }

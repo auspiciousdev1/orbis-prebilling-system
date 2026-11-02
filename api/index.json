@@ -1,7 +1,7 @@
 {
   "system": "ORBIS \u2014 Order & Revenue Billing Information System",
   "purpose": "Pre-billing source of truth for an invoice field validation POC.",
-  "generated_at": "2026-08-31T04:40:30Z",
+  "generated_at": "2026-11-02T09:04:13Z",
   "endpoints": {
     "operating_units": "api/operating-units.json",
     "customers": "api/customers.json",

@@ -57,6 +57,14 @@
       }
     ],
     "document_id": "DOC-PO-4500198872",
-    "documents": []
+    "documents": [
+      {
+        "document_id": "DOC-PO-4500198872",
+        "document_type": "PURCHASE_ORDER",
+        "title": "Customer Purchase Order",
+        "url": "docs/po_4500198872.pdf",
+        "size_bytes": 28217
+      }
+    ]
   }
 }

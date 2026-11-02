@@ -1,7 +1,7 @@
 {
   "source_system": "ORBIS ERP",
   "object": "Billing Draft Line (flat)",
-  "generated_at": "2026-08-31T04:40:30Z",
+  "generated_at": "2026-11-02T09:04:13Z",
   "note": "One row per draft line with every header field denormalised onto it. Columns prefixed ref_ are joined from the source objects.",
   "count": 4,
   "data": [

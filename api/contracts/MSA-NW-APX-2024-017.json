@@ -57,6 +57,14 @@
     "orders": [
       "SO-2026-07741"
     ],
-    "documents": []
+    "documents": [
+      {
+        "document_id": "DOC-CT-MSA-NW-APX-2024-017",
+        "document_type": "CONTRACT",
+        "title": "Master Commercial Agreement",
+        "url": "docs/contract_MSA-NW-APX-2024-017.pdf",
+        "size_bytes": 27960
+      }
+    ]
   }
 }

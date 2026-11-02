@@ -131,6 +131,14 @@
     "freight_amount": 480.0,
     "tax_amount": 0.0,
     "order_total": 31830.0,
-    "documents": []
+    "documents": [
+      {
+        "document_id": "DOC-SO-SO-2026-07741",
+        "document_type": "SALES_ORDER",
+        "title": "Sales Order Acknowledgement",
+        "url": "docs/so_SO-2026-07741.pdf",
+        "size_bytes": 28740
+      }
+    ]
   }
 }
